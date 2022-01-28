@@ -15,6 +15,8 @@
 		10450DF627A4429000C9A916 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10450DF427A4429000C9A916 /* LaunchScreen.storyboard */; };
 		105C1F4227A4460800D6CFBC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 105C1F4127A4460800D6CFBC /* .gitignore */; };
 		105C1F4727A456E300D6CFBC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4627A456E300D6CFBC /* SearchTableViewCell.swift */; };
+		105C1F4A27A45A3100D6CFBC /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4927A45A3100D6CFBC /* APIService.swift */; };
+		105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4C27A45D2900D6CFBC /* SearchResults.swift */; };
 		51DFBFB94FF2D19FCF368BD3 /* Pods_FinancialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		10450DF727A4429000C9A916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		105C1F4127A4460800D6CFBC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		105C1F4627A456E300D6CFBC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		105C1F4927A45A3100D6CFBC /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		105C1F4C27A45D2900D6CFBC /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.release.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.release.xcconfig"; sourceTree = "<group>"; };
 		C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinancialApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -68,6 +72,8 @@
 		10450DE827A4428F00C9A916 /* FinancialApp */ = {
 			isa = PBXGroup;
 			children = (
+				105C1F4B27A45D0F00D6CFBC /* Models */,
+				105C1F4827A459FE00D6CFBC /* Services */,
 				105C1F4527A456BF00D6CFBC /* Controllers */,
 				105C1F4427A456B000D6CFBC /* Views */,
 				10450DE927A4428F00C9A916 /* AppDelegate.swift */,
@@ -102,6 +108,22 @@
 				10450DED27A4428F00C9A916 /* SearchTableViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		105C1F4827A459FE00D6CFBC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				105C1F4927A45A3100D6CFBC /* APIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		105C1F4B27A45D0F00D6CFBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				105C1F4C27A45D2900D6CFBC /* SearchResults.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		35664CD103A3CFBD095931FC /* Pods */ = {
@@ -238,8 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				10450DEE27A4428F00C9A916 /* SearchTableViewController.swift in Sources */,
+				105C1F4A27A45A3100D6CFBC /* APIService.swift in Sources */,
 				105C1F4727A456E300D6CFBC /* SearchTableViewCell.swift in Sources */,
 				10450DEA27A4428F00C9A916 /* AppDelegate.swift in Sources */,
+				105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */,
 				10450DEC27A4428F00C9A916 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
