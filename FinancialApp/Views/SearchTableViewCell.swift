@@ -13,5 +13,4 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var assetSymbolLable: UILabel!
     @IBOutlet weak var assetTypeLabel: UILabel!
     
-    
 }
