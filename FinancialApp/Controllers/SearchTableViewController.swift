@@ -40,6 +40,7 @@ class SearchTableViewController: UITableViewController {
     
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
+        navigationItem.title = "Search"
     }
     
     private func observeForm() {
@@ -52,9 +53,7 @@ class SearchTableViewController: UITableViewController {
         $mode.sink { [unowned self] mode in
             switch mode {
             case .onboarding:
-                let redView = UIView()
-                redView.backgroundColor = .systemRed
-                self.tableView.backgroundView = redView
+                self.tableView.backgroundView = SearchPlaceholderView()
             case .searchMode:
                 self.tableView.backgroundView = nil
             }

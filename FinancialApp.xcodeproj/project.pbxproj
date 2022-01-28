@@ -17,6 +17,7 @@
 		105C1F4727A456E300D6CFBC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4627A456E300D6CFBC /* SearchTableViewCell.swift */; };
 		105C1F4A27A45A3100D6CFBC /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4927A45A3100D6CFBC /* APIService.swift */; };
 		105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4C27A45D2900D6CFBC /* SearchResults.swift */; };
+		105C1F4F27A47C4200D6CFBC /* SearchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4E27A47C4200D6CFBC /* SearchPlaceholderView.swift */; };
 		51DFBFB94FF2D19FCF368BD3 /* Pods_FinancialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		105C1F4627A456E300D6CFBC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		105C1F4927A45A3100D6CFBC /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		105C1F4C27A45D2900D6CFBC /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		105C1F4E27A47C4200D6CFBC /* SearchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderView.swift; sourceTree = "<group>"; };
 		3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.release.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.release.xcconfig"; sourceTree = "<group>"; };
 		C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinancialApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				105C1F4627A456E300D6CFBC /* SearchTableViewCell.swift */,
+				105C1F4E27A47C4200D6CFBC /* SearchPlaceholderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				10450DEA27A4428F00C9A916 /* AppDelegate.swift in Sources */,
 				105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */,
 				10450DEC27A4428F00C9A916 /* SceneDelegate.swift in Sources */,
+				105C1F4F27A47C4200D6CFBC /* SearchPlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
