@@ -22,6 +22,7 @@ class SearchTableViewController: UITableViewController {
     
     private let apiService = APIService()
     private var subscribers = Set<AnyCancellable>()
+    private var searchResults: SearchResults?
     @Published private var searchQuery = String()
 
     override func viewDidLoad() {
@@ -29,6 +30,10 @@ class SearchTableViewController: UITableViewController {
         
         setupNavigationBar()
         observeForm()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.searchController = searchController
     }
     
     private func observeForm() {
@@ -45,13 +50,12 @@ class SearchTableViewController: UITableViewController {
             case .failure(let error): print(error.localizedDescription)
             case .finished: break
             }
-        } receiveValue: { searchResults in
-            print(searchResults)
+        } receiveValue: { [weak self] searchResults in
+            guard let self = self else { return }
+            
+            self.searchResults = searchResults
+            self.tableView.reloadData()
         }.store(in: &subscribers)
-    }
-    
-    private func setupNavigationBar() {
-        navigationItem.searchController = searchController
     }
 }
 
@@ -61,7 +65,7 @@ extension SearchTableViewController {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        5
+        return searchResults?.items.count ?? 0
     }
     
     override func tableView(
@@ -71,8 +75,13 @@ extension SearchTableViewController {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "cellId",
             for: indexPath
-        )
-         
+        ) as! SearchTableViewCell
+        
+        if let searchResults = self.searchResults {
+            let searchResult = searchResults.items[indexPath.row]
+            cell.configure(with: searchResult)
+        }
+        
         return cell
     }
 }
