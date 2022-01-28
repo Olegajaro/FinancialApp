@@ -10,6 +10,11 @@ import Combine
 
 class SearchTableViewController: UITableViewController {
     
+    private enum Mode {
+        case onboarding
+        case searchMode
+    }
+    
     private lazy var searchController: UISearchController = {
         let sc = UISearchController(searchResultsController: nil)
         sc.searchResultsUpdater = self
@@ -23,6 +28,7 @@ class SearchTableViewController: UITableViewController {
     private let apiService = APIService()
     private var subscribers = Set<AnyCancellable>()
     private var searchResults: SearchResults?
+    @Published private var mode: Mode = .onboarding
     @Published private var searchQuery = String()
 
     override func viewDidLoad() {
@@ -42,6 +48,17 @@ class SearchTableViewController: UITableViewController {
             .sink { [unowned self] searchQuery in
                 performSearch(keywords: searchQuery)
             }.store(in: &subscribers)
+        
+        $mode.sink { [unowned self] mode in
+            switch mode {
+            case .onboarding:
+                let redView = UIView()
+                redView.backgroundColor = .systemRed
+                self.tableView.backgroundView = redView
+            case .searchMode:
+                self.tableView.backgroundView = nil
+            }
+        }.store(in: &subscribers)
     }
     
     private func performSearch(keywords: String) {
@@ -95,6 +112,14 @@ extension SearchTableViewController: UISearchResultsUpdating {
         else { return }
         
         self.searchQuery = searchQuery
+    }
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        mode = .searchMode
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        mode = .onboarding
     }
 }
 
