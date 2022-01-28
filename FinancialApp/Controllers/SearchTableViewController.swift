@@ -7,8 +7,9 @@
 
 import UIKit
 import Combine
+import MBProgressHUD
 
-class SearchTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController, UIAnimatable {
     
     private enum Mode {
         case onboarding
@@ -61,7 +62,11 @@ class SearchTableViewController: UITableViewController {
     }
     
     private func performSearch(keywords: String) {
+        showLoadingAnimation()
+        
         apiService.fetchSymbolsPublishser(keywords: keywords).sink { completion in
+            self.hideLoadingAnimation()
+            
             switch completion {
             case .failure(let error): print(error.localizedDescription)
             case .finished: break
