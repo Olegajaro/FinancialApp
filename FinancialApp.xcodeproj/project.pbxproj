@@ -13,9 +13,12 @@
 		10450DF127A4428F00C9A916 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10450DEF27A4428F00C9A916 /* Main.storyboard */; };
 		10450DF327A4429000C9A916 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10450DF227A4429000C9A916 /* Assets.xcassets */; };
 		10450DF627A4429000C9A916 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10450DF427A4429000C9A916 /* LaunchScreen.storyboard */; };
+		105C1F4227A4460800D6CFBC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 105C1F4127A4460800D6CFBC /* .gitignore */; };
+		51DFBFB94FF2D19FCF368BD3 /* Pods_FinancialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E282FACDEDCD05EFB7701CF /* Pods-FinancialApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.debug.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.debug.xcconfig"; sourceTree = "<group>"; };
 		10450DE627A4428F00C9A916 /* FinancialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinancialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10450DE927A4428F00C9A916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10450DEB27A4428F00C9A916 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		10450DF227A4429000C9A916 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10450DF527A4429000C9A916 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10450DF727A4429000C9A916 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		105C1F4127A4460800D6CFBC /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.release.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.release.xcconfig"; sourceTree = "<group>"; };
+		C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinancialApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51DFBFB94FF2D19FCF368BD3 /* Pods_FinancialApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +47,11 @@
 		10450DDD27A4428F00C9A916 = {
 			isa = PBXGroup;
 			children = (
+				105C1F4127A4460800D6CFBC /* .gitignore */,
 				10450DE827A4428F00C9A916 /* FinancialApp */,
 				10450DE727A4428F00C9A916 /* Products */,
+				35664CD103A3CFBD095931FC /* Pods */,
+				6632333F707EDCC64982CC46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +77,23 @@
 			path = FinancialApp;
 			sourceTree = "<group>";
 		};
+		35664CD103A3CFBD095931FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E282FACDEDCD05EFB7701CF /* Pods-FinancialApp.debug.xcconfig */,
+				3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6632333F707EDCC64982CC46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10450DFA27A4429000C9A916 /* Build configuration list for PBXNativeTarget "FinancialApp" */;
 			buildPhases = (
+				BF6C470A560BF59E4B1C0EB7 /* [CP] Check Pods Manifest.lock */,
 				10450DE227A4428F00C9A916 /* Sources */,
 				10450DE327A4428F00C9A916 /* Frameworks */,
 				10450DE427A4428F00C9A916 /* Resources */,
+				AFAC9FFC3815A6310FF64D04 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105C1F4227A4460800D6CFBC /* .gitignore in Resources */,
 				10450DF627A4429000C9A916 /* LaunchScreen.storyboard in Resources */,
 				10450DF327A4429000C9A916 /* Assets.xcassets in Resources */,
 				10450DF127A4428F00C9A916 /* Main.storyboard in Resources */,
@@ -132,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFAC9FFC3815A6310FF64D04 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FinancialApp/Pods-FinancialApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FinancialApp/Pods-FinancialApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FinancialApp/Pods-FinancialApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF6C470A560BF59E4B1C0EB7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FinancialApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		10450DE227A4428F00C9A916 /* Sources */ = {
@@ -284,6 +356,7 @@
 		};
 		10450DFB27A4429000C9A916 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E282FACDEDCD05EFB7701CF /* Pods-FinancialApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -305,12 +378,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		10450DFC27A4429000C9A916 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -332,7 +406,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
