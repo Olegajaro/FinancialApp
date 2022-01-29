@@ -62,9 +62,11 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     }
     
     private func performSearch(keywords: String) {
+        guard !searchQuery.isEmpty else { return }
         showLoadingAnimation()
         
         apiService.fetchSymbolsPublishser(keywords: keywords).sink { completion in
+            
             self.hideLoadingAnimation()
             
             switch completion {
@@ -113,7 +115,7 @@ extension SearchTableViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true )
     
         performSegue(withIdentifier: "showCalculator", sender: nil)
     }
@@ -132,10 +134,6 @@ extension SearchTableViewController: UISearchResultsUpdating {
     
     func willPresentSearchController(_ searchController: UISearchController) {
         mode = .searchMode
-    }
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-        mode = .onboarding
     }
 }
 
