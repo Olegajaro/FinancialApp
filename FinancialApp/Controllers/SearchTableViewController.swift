@@ -107,6 +107,18 @@ extension SearchTableViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+extension SearchTableViewController {
+    override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    
+        performSegue(withIdentifier: "showCalculator", sender: nil)
+    }
+}
+
 // MARK: - UISearchResultsUpdating
 extension SearchTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
