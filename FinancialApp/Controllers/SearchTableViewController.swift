@@ -80,6 +80,21 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
             self.tableView.reloadData()
         }.store(in: &subscribers)
     }
+    
+    private func handleSelection(for symbol: String) {
+        
+        apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol)
+            .sink { completionResult in
+                switch completionResult {
+                case .failure(let error): print(error)
+                case .finished: break
+                }
+            } receiveValue: { timeSeriesMonthlyAdjusted in
+                print("success: \(timeSeriesMonthlyAdjusted)")
+            }.store(in: &subscribers)
+        
+//        performSegue(withIdentifier: "showCalculator", sender: nil)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -117,7 +132,10 @@ extension SearchTableViewController {
     ) {
         tableView.deselectRow(at: indexPath, animated: true )
     
-        performSegue(withIdentifier: "showCalculator", sender: nil)
+        if let searchResults = self.searchResults {
+            let symbol = searchResults.items[indexPath.row].symbol
+            handleSelection(for: symbol)
+        }
     }
 }
 
