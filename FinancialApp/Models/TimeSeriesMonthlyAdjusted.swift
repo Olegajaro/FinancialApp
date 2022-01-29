@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct MonthInfo {
+    let date: Date
+    let adjustedOpen: Double
+    let adjustedClose: Double
+}
+
 struct TimeSeriesMonthlyAdjusted: Decodable {
     
     let metaData: MetaData
@@ -15,6 +21,17 @@ struct TimeSeriesMonthlyAdjusted: Decodable {
     enum CodingKeys: String, CodingKey {
         case metaData = "Meta Data"
         case timeSeries = "Monthly Adjusted Time Series"
+    }
+    
+    func getMonthInfos() -> [MonthInfo] {
+        
+        var monthInfos: [MonthInfo] = []
+        
+        let sortedTimeSeries = timeSeries.sorted { $0.key > $1.key }
+        print("sorted: \(sortedTimeSeries)")
+
+        
+        return monthInfos
     }
 }
 
