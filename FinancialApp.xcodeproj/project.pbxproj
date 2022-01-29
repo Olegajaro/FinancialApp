@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100B583F27A5C91200805CC9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B583E27A5C91200805CC9 /* String+Extensions.swift */; };
 		10450DEA27A4428F00C9A916 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10450DE927A4428F00C9A916 /* AppDelegate.swift */; };
 		10450DEC27A4428F00C9A916 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10450DEB27A4428F00C9A916 /* SceneDelegate.swift */; };
 		10450DEE27A4428F00C9A916 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10450DED27A4428F00C9A916 /* SearchTableViewController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		0E282FACDEDCD05EFB7701CF /* Pods-FinancialApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.debug.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.debug.xcconfig"; sourceTree = "<group>"; };
+		100B583E27A5C91200805CC9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		10450DE627A4428F00C9A916 /* FinancialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinancialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10450DE927A4428F00C9A916 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10450DEB27A4428F00C9A916 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		100B583D27A5C8F800805CC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				100B583E27A5C91200805CC9 /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		10450DDD27A4428F00C9A916 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +92,7 @@
 		10450DE827A4428F00C9A916 /* FinancialApp */ = {
 			isa = PBXGroup;
 			children = (
+				100B583D27A5C8F800805CC9 /* Extensions */,
 				105C1F5027A4800500D6CFBC /* Protocols */,
 				105C1F4B27A45D0F00D6CFBC /* Models */,
 				105C1F4827A459FE00D6CFBC /* Services */,
@@ -286,6 +297,7 @@
 				105C1F5227A4802700D6CFBC /* UIAnimatable.swift in Sources */,
 				105C1F4A27A45A3100D6CFBC /* APIService.swift in Sources */,
 				1083DFBA27A5BD4700F1C173 /* Asset.swift in Sources */,
+				100B583F27A5C91200805CC9 /* String+Extensions.swift in Sources */,
 				1083DFB827A5BC5600F1C173 /* CalculatorTableViewController.swift in Sources */,
 				105C1F4727A456E300D6CFBC /* SearchTableViewCell.swift in Sources */,
 				10450DEA27A4428F00C9A916 /* AppDelegate.swift in Sources */,
