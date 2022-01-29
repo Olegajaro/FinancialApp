@@ -74,9 +74,9 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         guard !searchQuery.isEmpty else { return }
         showLoadingAnimation()
         
-        apiService.fetchSymbolsPublishser(keywords: keywords).sink { completion in
-            
-            self.hideLoadingAnimation()
+        apiService.fetchSymbolsPublishser(keywords: keywords)
+            .sink { [weak self] completion in
+            self?.hideLoadingAnimation()
             
             switch completion {
             case .failure(let error): print(error.localizedDescription)
@@ -91,14 +91,18 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     }
     
     private func handleSelection(for symbol: String, searchResult: SearchResult) {
+        showLoadingAnimation()
         
         apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol)
-            .sink { completionResult in
+            .sink { [weak self] completionResult in
+                self?.hideLoadingAnimation()
+                
                 switch completionResult {
                 case .failure(let error): print(error)
                 case .finished: break
                 }
             } receiveValue: { [weak self] timeSeriesMonthlyAdjusted in
+                self?.hideLoadingAnimation()
                 let asset = Asset(
                     searchResult: searchResult,
                     timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted
