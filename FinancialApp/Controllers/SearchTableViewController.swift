@@ -31,12 +31,21 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     private var searchResults: SearchResults?
     @Published private var mode: Mode = .onboarding
     @Published private var searchQuery = String()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavigationBar()
         observeForm()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCalculator",
+           let destination = segue.destination as? CalculatorTableViewController,
+           let asset = sender as? Asset {
+            
+            destination.asset = asset
+        }
     }
     
     private func setupNavigationBar() {
@@ -81,7 +90,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         }.store(in: &subscribers)
     }
     
-    private func handleSelection(for symbol: String) {
+    private func handleSelection(for symbol: String, searchResult: SearchResult) {
         
         apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol)
             .sink { completionResult in
@@ -89,11 +98,13 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
                 case .failure(let error): print(error)
                 case .finished: break
                 }
-            } receiveValue: { timeSeriesMonthlyAdjusted in
-                print("success: \(timeSeriesMonthlyAdjusted.getMonthInfos())")
+            } receiveValue: { [weak self] timeSeriesMonthlyAdjusted in
+                let asset = Asset(
+                    searchResult: searchResult,
+                    timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted
+                )
+                self?.performSegue(withIdentifier: "showCalculator", sender: asset)
             }.store(in: &subscribers)
-        
-//        performSegue(withIdentifier: "showCalculator", sender: nil)
     }
 }
 
@@ -133,8 +144,9 @@ extension SearchTableViewController {
         tableView.deselectRow(at: indexPath, animated: true )
     
         if let searchResults = self.searchResults {
-            let symbol = searchResults.items[indexPath.row].symbol
-            handleSelection(for: symbol)
+            let searchResult = searchResults.items[indexPath.row]
+            let symbol = searchResult.symbol
+            handleSelection(for: symbol, searchResult: searchResult)
         }
     }
 }

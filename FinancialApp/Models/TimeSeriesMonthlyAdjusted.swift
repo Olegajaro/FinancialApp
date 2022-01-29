@@ -48,7 +48,7 @@ struct TimeSeriesMonthlyAdjusted: Decodable {
     }
     
     private func getAdjustedOpen(ohlc: OHLC) -> Double {
-        // adjustedOpen = open * (adjusted close / close)
+        // adjustedOpen = open * (adjusted close / close) 
         guard
             let open = Double(ohlc.open),
             let adjustedClose = Double(ohlc.adjustedClose),
