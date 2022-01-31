@@ -27,6 +27,15 @@ class CalculatorTableViewController: UITableViewController {
         setupTextFields()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showInitialDate",
+           let destination = segue.destination as? DateSelectionTableViewController,
+           let timeSeriesMonthlyAdjusted = sender as? TimeSeriesMonthlyAdjusted {
+            
+            destination.timeSeriesMonthlyAdjusted = timeSeriesMonthlyAdjusted
+        }
+    }
+    
     private func setupViews() {
         symbolLabel.text = asset?.searchResult.symbol
         nameLabel.text = asset?.searchResult.name
@@ -43,13 +52,12 @@ class CalculatorTableViewController: UITableViewController {
     } 
 }
 
-// MARK: - UITextFieldDelegate
 extension CalculatorTableViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if textField == initialDateOfInvestmentTextField {
             performSegue(withIdentifier: "showInitialDate",
-                         sender: asset?.timeSeriesMonthlyAdjusted.getMonthInfos)
+                         sender: asset?.timeSeriesMonthlyAdjusted)
         }
         
         return false
