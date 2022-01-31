@@ -33,6 +33,9 @@ class CalculatorTableViewController: UITableViewController {
            let timeSeriesMonthlyAdjusted = sender as? TimeSeriesMonthlyAdjusted {
             
             destination.timeSeriesMonthlyAdjusted = timeSeriesMonthlyAdjusted
+            destination.didSelectDate = { [weak self] index in
+                self?.handleDateSelection(at: index)
+            }
         }
     }
     
@@ -49,7 +52,21 @@ class CalculatorTableViewController: UITableViewController {
         initialInvestmentAmountTextField.addDoneButton()
         monthlyDollarCostAveragingTextField.addDoneButton()
         initialDateOfInvestmentTextField.delegate = self
-    } 
+    }
+    
+    private func handleDateSelection(at index: Int) {
+        guard
+            navigationController?.visibleViewController is DateSelectionTableViewController
+        else { return }
+        
+        navigationController?.popViewController(animated: true)
+        
+        if let monthInfos = asset?.timeSeriesMonthlyAdjusted.getMonthInfos() {
+            let monthInfo = monthInfos[index]
+            let dateString = monthInfo.date.MMYYFormat
+            initialDateOfInvestmentTextField.text = dateString
+        }
+    }
 }
 
 extension CalculatorTableViewController: UITextFieldDelegate {

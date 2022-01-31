@@ -10,15 +10,22 @@ import UIKit
 class DateSelectionTableViewController: UITableViewController {
     
     var timeSeriesMonthlyAdjusted: TimeSeriesMonthlyAdjusted?
-    var monthInfos: [MonthInfo] = []
+    private var monthInfos: [MonthInfo] = []
+    
+    var didSelectDate: ((Int) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViews()
+        setupNavigationBar()
+        setupMonthInfos()
     }
     
-    private func setupViews() {
+    private func setupNavigationBar() {
+        title = "Select date "
+    }
+    
+    private func setupMonthInfos() {
         if let monthInfos = timeSeriesMonthlyAdjusted?.getMonthInfos() {
             self.monthInfos = monthInfos
         }
@@ -55,6 +62,8 @@ extension DateSelectionTableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        didSelectDate?(indexPath.row)
     }
 }
 
