@@ -26,6 +26,7 @@
 		10958EC827A819B0009197B7 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10958EC727A819B0009197B7 /* UITextField+Extensions.swift */; };
 		10958ECA27A848B6009197B7 /* DateSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10958EC927A848B6009197B7 /* DateSelectionTableViewController.swift */; };
 		10958ECC27A84FF5009197B7 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10958ECB27A84FF5009197B7 /* Date+Extensions.swift */; };
+		10958ECE27A860BE009197B7 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10958ECD27A860BE009197B7 /* Int+Extensions.swift */; };
 		51DFBFB94FF2D19FCF368BD3 /* Pods_FinancialApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		10958EC727A819B0009197B7 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		10958EC927A848B6009197B7 /* DateSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectionTableViewController.swift; sourceTree = "<group>"; };
 		10958ECB27A84FF5009197B7 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		10958ECD27A860BE009197B7 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		3EF0F48D8B90E442D74C4837 /* Pods-FinancialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinancialApp.release.xcconfig"; path = "Target Support Files/Pods-FinancialApp/Pods-FinancialApp.release.xcconfig"; sourceTree = "<group>"; };
 		C7D68C8E13BE666F56261CCE /* Pods_FinancialApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinancialApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				100B583E27A5C91200805CC9 /* String+Extensions.swift */,
 				10958EC727A819B0009197B7 /* UITextField+Extensions.swift */,
 				10958ECB27A84FF5009197B7 /* Date+Extensions.swift */,
+				10958ECD27A860BE009197B7 /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				10450DEE27A4428F00C9A916 /* SearchTableViewController.swift in Sources */,
 				105C1F5227A4802700D6CFBC /* UIAnimatable.swift in Sources */,
 				105C1F4A27A45A3100D6CFBC /* APIService.swift in Sources */,
+				10958ECE27A860BE009197B7 /* Int+Extensions.swift in Sources */,
 				1083DFBA27A5BD4700F1C173 /* Asset.swift in Sources */,
 				100B583F27A5C91200805CC9 /* String+Extensions.swift in Sources */,
 				1083DFB827A5BC5600F1C173 /* CalculatorTableViewController.swift in Sources */,
