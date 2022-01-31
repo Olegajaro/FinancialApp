@@ -95,7 +95,7 @@
         <scene sceneID="EKd-ts-5z4">
             <objects>
                 <tableViewController id="iLv-LT-sNK" customClass="CalculatorTableViewController" customModule="FinancialApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="16" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="frd-BR-dUB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="16" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="frd-BR-dUB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -277,7 +277,7 @@
                                                                         <constraint firstAttribute="height" constant="36" id="Mjy-7U-AJM"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YrY-Ox-n2x">
                                                                     <rect key="frame" x="0.0" y="32" width="382" height="14"/>
@@ -310,7 +310,7 @@
                                                                         <constraint firstAttribute="height" constant="36" id="BpY-Sp-i7V"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
-                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7Wa-7M-Cae">
                                                                     <rect key="frame" x="0.0" y="32" width="382" height="14"/>
@@ -385,13 +385,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="LFn-u4-MUi"/>
                     <connections>
+                        <outlet property="initialDateOfInvestmentTextField" destination="F9U-3f-YUs" id="z4M-ee-K61"/>
+                        <outlet property="initialInvestmentAmountTextField" destination="0Lc-QW-B8f" id="PHL-DF-4Ac"/>
                         <outlet property="investmentAmountCurrencyLabel" destination="fFb-X8-0dg" id="730-zl-MIO"/>
+                        <outlet property="monthlyDollarCostAveragingTextField" destination="pGE-bK-MTD" id="dDj-Lc-xNJ"/>
                         <outlet property="nameLabel" destination="xST-P7-thf" id="DlJ-5l-JLH"/>
                         <outlet property="symbolLabel" destination="FHu-GK-ajS" id="SST-8i-JLj"/>
                         <outletCollection property="currencyLabels" destination="UKw-ZZ-L1o" collectionClass="NSMutableArray" id="9aZ-9B-Q56"/>
                         <outletCollection property="currencyLabels" destination="OYz-5Z-MEm" collectionClass="NSMutableArray" id="sLq-mr-pcF"/>
                         <outletCollection property="currencyLabels" destination="pby-O4-0Qo" collectionClass="NSMutableArray" id="D28-hH-cWf"/>
-                        <segue destination="6qO-z1-eTG" kind="show" identifier="segue2" id="Yoy-Cp-Hvb"/>
+                        <segue destination="6qO-z1-eTG" kind="show" identifier="showInitialDate" id="Yoy-Cp-Hvb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfq-VN-NdH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
