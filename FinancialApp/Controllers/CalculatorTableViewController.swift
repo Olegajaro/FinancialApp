@@ -11,13 +11,21 @@ import Combine
 
 class CalculatorTableViewController: UITableViewController {
     
+    @IBOutlet weak var currentValueLabel: UILabel!
+    @IBOutlet weak var investmentAmountLabel: UILabel!
+    @IBOutlet weak var gainLabel: UILabel!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var annualReturnLabel: UILabel!
+    
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet var currencyLabels: [UILabel]!
     @IBOutlet weak var investmentAmountCurrencyLabel: UILabel!
+    
     @IBOutlet weak var initialInvestmentAmountTextField: UITextField!
     @IBOutlet weak var monthlyDollarCostAveragingTextField: UITextField!
     @IBOutlet weak var initialDateOfInvestmentTextField: UITextField!
+    
     @IBOutlet weak var dateSlider: UISlider!
     
     var asset: Asset?
@@ -27,6 +35,7 @@ class CalculatorTableViewController: UITableViewController {
     @Published private var monthlyDollarCostAveraging: Int?
     
     private var subscribers = Set<AnyCancellable>()
+    private let dcaService = DCAService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +48,6 @@ class CalculatorTableViewController: UITableViewController {
     
     @IBAction func dateSliderDidChange(_ sender: UISlider) {
         initialDateOfInvestementIndex = Int(sender.value)
-        print(sender.value)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -136,8 +144,30 @@ class CalculatorTableViewController: UITableViewController {
             $initialInvestmentAmount,
             $monthlyDollarCostAveraging,
             $initialDateOfInvestementIndex
-        ).sink { initialInvestmentAmount, monthlyDollarCostAveraging, initialDateOfInvestementIndex  in
-            print("\(initialInvestmentAmount), \(monthlyDollarCostAveraging), \(initialDateOfInvestementIndex)")
+        ).sink { [weak self]
+            initialInvestmentAmount,
+            monthlyDollarCostAveraging,
+            initialDateOfInvestementIndex  in
+            
+            guard
+                let self = self,
+                let initialInvestmentAmount = initialInvestmentAmount,
+                let monthlyDollarCostAveraging = monthlyDollarCostAveraging,
+                let initialDateOfInvestementIndex = initialDateOfInvestementIndex
+            else { return }
+            
+            let result = self.dcaService.calculate(
+                initialInvestmentAmount: initialInvestmentAmount.doubleValue,
+                monthlyDollarCostAveragingAmount: monthlyDollarCostAveraging.doubleValue,
+                InitialDateOfInvestmentIndex: initialDateOfInvestementIndex
+            )
+            
+            self.currentValueLabel.text = result.currentValue.stringValue
+            self.investmentAmountLabel.text = result.investmentAmount.stringValue
+            self.gainLabel.text = result.gain.stringValue
+            self.yieldLabel.text = result.yield.stringValue
+            self.annualReturnLabel.text = result.annualReturn.stringValue
+            
         }.store(in: &subscribers)
         
         /*

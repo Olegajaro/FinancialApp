@@ -20,6 +20,8 @@
 		105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4C27A45D2900D6CFBC /* SearchResults.swift */; };
 		105C1F4F27A47C4200D6CFBC /* SearchPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F4E27A47C4200D6CFBC /* SearchPlaceholderView.swift */; };
 		105C1F5227A4802700D6CFBC /* UIAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C1F5127A4802700D6CFBC /* UIAnimatable.swift */; };
+		10629BA727A9600E004718B6 /* DCAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10629BA627A9600E004718B6 /* DCAService.swift */; };
+		10629BA927A963EA004718B6 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10629BA827A963EA004718B6 /* Double+Extensions.swift */; };
 		1083DFB627A5A09500F1C173 /* TimeSeriesMonthlyAdjusted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083DFB527A5A09500F1C173 /* TimeSeriesMonthlyAdjusted.swift */; };
 		1083DFB827A5BC5600F1C173 /* CalculatorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083DFB727A5BC5600F1C173 /* CalculatorTableViewController.swift */; };
 		1083DFBA27A5BD4700F1C173 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1083DFB927A5BD4700F1C173 /* Asset.swift */; };
@@ -47,6 +49,8 @@
 		105C1F4C27A45D2900D6CFBC /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		105C1F4E27A47C4200D6CFBC /* SearchPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceholderView.swift; sourceTree = "<group>"; };
 		105C1F5127A4802700D6CFBC /* UIAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAnimatable.swift; sourceTree = "<group>"; };
+		10629BA627A9600E004718B6 /* DCAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCAService.swift; sourceTree = "<group>"; };
+		10629BA827A963EA004718B6 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		1083DFB527A5A09500F1C173 /* TimeSeriesMonthlyAdjusted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSeriesMonthlyAdjusted.swift; sourceTree = "<group>"; };
 		1083DFB727A5BC5600F1C173 /* CalculatorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTableViewController.swift; sourceTree = "<group>"; };
 		1083DFB927A5BD4700F1C173 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				10958EC727A819B0009197B7 /* UITextField+Extensions.swift */,
 				10958ECB27A84FF5009197B7 /* Date+Extensions.swift */,
 				10958ECD27A860BE009197B7 /* Int+Extensions.swift */,
+				10629BA827A963EA004718B6 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				105C1F4927A45A3100D6CFBC /* APIService.swift */,
+				10629BA627A9600E004718B6 /* DCAService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -316,6 +322,8 @@
 				1083DFB827A5BC5600F1C173 /* CalculatorTableViewController.swift in Sources */,
 				10958ECC27A84FF5009197B7 /* Date+Extensions.swift in Sources */,
 				105C1F4727A456E300D6CFBC /* SearchTableViewCell.swift in Sources */,
+				10629BA727A9600E004718B6 /* DCAService.swift in Sources */,
+				10629BA927A963EA004718B6 /* Double+Extensions.swift in Sources */,
 				10450DEA27A4428F00C9A916 /* AppDelegate.swift in Sources */,
 				1083DFB627A5A09500F1C173 /* TimeSeriesMonthlyAdjusted.swift in Sources */,
 				105C1F4D27A45D2900D6CFBC /* SearchResults.swift in Sources */,
