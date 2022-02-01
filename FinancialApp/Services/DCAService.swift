@@ -38,9 +38,11 @@ struct DCAService {
         
         let isProfitable = currentValue > investmentAmount
         
+        let gain = currentValue - investmentAmount
+        
         return .init(currentValue: currentValue,
                      investmentAmount: investmentAmount,
-                     gain: 0, 
+                     gain: gain, 
                      yield: 0,
                      annualReturn: 0,
                      isProfitable: isProfitable)
