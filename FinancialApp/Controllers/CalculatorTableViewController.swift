@@ -184,7 +184,7 @@ class CalculatorTableViewController: UITableViewController {
             
             self.currentValueLabel.backgroundColor = isProfitable ? .themeGreenShade : .themeRedShade
             self.currentValueLabel.text = result.currentValue.currencyFormat
-            self.investmentAmountLabel.text = result.investmentAmount.currencyFormat
+            self.investmentAmountLabel.text = result.investmentAmount.toCurrencyFormat(hasDecimalPlaces: false)
             
             self.gainLabel.text = result.gain.toCurrencyFormat(
                 hasDollarSymbol: false, hasDecimalPlaces: false
@@ -196,17 +196,6 @@ class CalculatorTableViewController: UITableViewController {
             self.annualReturnLabel.text = result.annualReturn.percentageFormat
             self.annualReturnLabel.textColor = isProfitable ? .systemGreen : .systemRed
         }.store(in: &subscribers)
-        
-        /*
-         NotificationCenter.default.publisher(
-             for: UITextField.textDidChangeNotification,
-                object: initialInvestmentAmountTextField
-         ).compactMap {
-             ( $0.object as? UITextField)?.text
-         }.sink { text in
-             print("initialInvestmentAmountTextField: \(text)")
-         }.store(in: &subscribers)
-         */
     }
 }
 

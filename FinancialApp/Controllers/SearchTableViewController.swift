@@ -36,6 +36,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setupTableView()
         observeForm()
     }
     
@@ -51,6 +52,11 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
         navigationItem.title = "Search"
+    }
+    
+    private func setupTableView() {
+        tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView()
     }
     
     private func observeForm() {
@@ -87,6 +93,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
             
             self.searchResults = searchResults
             self.tableView.reloadData()
+            self.tableView.isScrollEnabled = true
         }.store(in: &subscribers)
     }
     
