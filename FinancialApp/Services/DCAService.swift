@@ -21,7 +21,7 @@ struct DCAService {
             asset: asset,
             initialInvestmentAmount: initialInvestmentAmount,
             monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount,
-            InitialDateOfInvestmentIndex: InitialDateOfInvestmentIndex
+            initialDateOfInvestmentIndex: InitialDateOfInvestmentIndex
         )
         let latestSharePrice = getLatestsSharePrice(asset: asset)
         
@@ -40,12 +40,17 @@ struct DCAService {
         
         let gain = currentValue - investmentAmount
         let yield = gain / investmentAmount
+        let annualReturn = getAnnualReturn(
+            currentValue: currentValue,
+            investmentAmount: investmentAmount,
+            initialDateOfInvestmentIndex: InitialDateOfInvestmentIndex
+        )
         
         return .init(currentValue: currentValue,
                      investmentAmount: investmentAmount,
                      gain: gain, 
                      yield: yield,
-                     annualReturn: 0,
+                     annualReturn: annualReturn,
                      isProfitable: isProfitable)
     }
     
@@ -60,17 +65,17 @@ struct DCAService {
         asset: Asset,
         initialInvestmentAmount: Double,
         monthlyDollarCostAveragingAmount: Double,
-        InitialDateOfInvestmentIndex: Int
+        initialDateOfInvestmentIndex: Int
     ) -> Double {
         var totalShares = Double()
         
         let initialInvestmentOpenPrice =
-        asset.timeSeriesMonthlyAdjusted.getMonthInfos()[InitialDateOfInvestmentIndex].adjustedOpen
+        asset.timeSeriesMonthlyAdjusted.getMonthInfos()[initialDateOfInvestmentIndex].adjustedOpen
         
         let initialInvestmentShares = initialInvestmentAmount / initialInvestmentOpenPrice
         totalShares += initialInvestmentShares
         
-        asset.timeSeriesMonthlyAdjusted.getMonthInfos().prefix(InitialDateOfInvestmentIndex).forEach { monthInfo in
+        asset.timeSeriesMonthlyAdjusted.getMonthInfos().prefix(initialDateOfInvestmentIndex).forEach { monthInfo in
             let dcaInvestmentShares = monthlyDollarCostAveragingAmount / monthInfo.adjustedOpen
             totalShares += dcaInvestmentShares
         }
@@ -92,6 +97,16 @@ struct DCAService {
         let dollarCostAveragingAmount = initialDateOfInvestmentIndex.doubleValue * monthlyDollarCostAveragingAmount
         totalAmount += dollarCostAveragingAmount
         return totalAmount
+    }
+    
+    private func getAnnualReturn(
+        currentValue: Double,
+        investmentAmount: Double,
+        initialDateOfInvestmentIndex: Int
+    ) -> Double {
+        let rate = currentValue / investmentAmount
+        let years = ((initialDateOfInvestmentIndex + 1) / 12).doubleValue
+        return pow(rate, 1 / years) - 1
     }
 }
 

@@ -44,6 +44,11 @@ class CalculatorTableViewController: UITableViewController {
         setupTextFields()
         setupDateSlider()
         observeForm()
+        resetViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        initialInvestmentAmountTextField.becomeFirstResponder()
     }
     
     @IBAction func dateSliderDidChange(_ sender: UISlider) {
@@ -98,6 +103,14 @@ class CalculatorTableViewController: UITableViewController {
             let dateString = monthInfo.date.MMYYFormat
             initialDateOfInvestmentTextField.text = dateString
         }
+    }
+    
+    private func resetViews() {
+        currentValueLabel.text = "0.00"
+        investmentAmountLabel.text = "0.00"
+        gainLabel.text = "-"
+        yieldLabel.text = "-"
+        annualReturnLabel.text = "-"
     }
     
     private func observeForm() {
@@ -178,8 +191,8 @@ class CalculatorTableViewController: UITableViewController {
             self.yieldLabel.text = result.yield.percentageFormat.prefix(withText: gainSymbol).addBrackets()
             self.yieldLabel.textColor = isProfitable ? .systemGreen : .systemRed
             
-            self.annualReturnLabel.text = result.annualReturn.stringValue
-            
+            self.annualReturnLabel.text = result.annualReturn.percentageFormat
+            self.annualReturnLabel.textColor = isProfitable ? .systemGreen : .systemRed
         }.store(in: &subscribers)
         
         /*
