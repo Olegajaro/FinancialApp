@@ -40,7 +40,7 @@ struct DCAService {
         
         return .init(currentValue: currentValue,
                      investmentAmount: investmentAmount,
-                     gain: 0,
+                     gain: 0, 
                      yield: 0,
                      annualReturn: 0,
                      isProfitable: isProfitable)

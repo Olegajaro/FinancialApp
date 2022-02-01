@@ -165,8 +165,8 @@ class CalculatorTableViewController: UITableViewController {
             )
             
             self.currentValueLabel.backgroundColor = result.isProfitable ? .themeGreenShade : .themeRedShade
-            self.currentValueLabel.text = result.currentValue.twoDecimalPlaceString
-            self.investmentAmountLabel.text = result.investmentAmount.stringValue
+            self.currentValueLabel.text = result.currentValue.currencyFormat
+            self.investmentAmountLabel.text = result.investmentAmount.currencyFormat
             self.gainLabel.text = result.gain.stringValue
             self.yieldLabel.text = result.yield.stringValue
             self.annualReturnLabel.text = result.annualReturn.stringValue
