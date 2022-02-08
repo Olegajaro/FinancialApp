@@ -75,7 +75,40 @@ class DCAServiceTests: XCTestCase {
     }
     
     func testResult_givenWinningAssetAndDCAIsNotUsed_expectPositiveGains() {
+        // given
+        let initialInvestmentAmount: Double = 5000
+        let monthlyDollarCostAveragingAmount: Double = 0
+        let initialDateOfInvestmentIndex = 3 // (4 months ago)
+        let asset = buildWinningAsset()
+        // when
+        let result = sut.calculate(
+            asset: asset,
+            initialInvestmentAmount: initialInvestmentAmount,
+            monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount,
+            InitialDateOfInvestmentIndex: initialDateOfInvestmentIndex
+        )
+        // then
+        // initial investment: $5000
+        // DCA: $0.0 * 5 = $0.0
+        // total: $5000 + $0.0 = $5000
+        XCTAssertEqual(result.investmentAmount,
+                       5000,
+                       "investment amount is incorrect")
+        XCTAssertTrue(result.isProfitable)
         
+        // Mar: $5000 / 120 = 41.6666 shares
+        // April: $0 / 130 = 0
+        // May: $0 / 140 = 0
+        // June $0 / 150 = 0
+        // Total shares = 41.6666
+        // Total current value = 41.6666 * $160 (latest month closing price) = $6,666.666
+        XCTAssertEqual(result.currentValue, 6666.666, accuracy: 0.001)
+        
+        // gain = $6,666.666 - $5,000 = $1,666.666
+        XCTAssertEqual(result.gain, 1666.666, accuracy: 0.001)
+        
+        // yeild = $1,666.666 / $5000 = 0.3333
+        XCTAssertEqual(result.yield, 0.3333, accuracy: 0.0001)
     }
     
     func testResult_givenLosingAssetAndDCAIsUsed_expectNegativeGains() {
