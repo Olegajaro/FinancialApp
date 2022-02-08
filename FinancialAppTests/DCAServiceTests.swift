@@ -23,6 +23,7 @@ class DCAServiceTests: XCTestCase {
         sut = nil
     }
     
+    // MARK: - Test cases
     // test cases
     // 1. asset = winning | dca = true => positive gains
     // 2. asset = winning | dca = false => positive gains
@@ -34,6 +35,7 @@ class DCAServiceTests: XCTestCase {
     // given
     // expectation
     
+    // MARK: - Case 1
     // Dollar Cost Averaging - DCA
     func testResult_givenWinningAssetAndDCAIsUsed_expectPositiveGains() {
         // given
@@ -74,6 +76,7 @@ class DCAServiceTests: XCTestCase {
         XCTAssertEqual(result.yield, 0.423, accuracy: 0.001)
     }
     
+    // MARK: - Case 2
     func testResult_givenWinningAssetAndDCAIsNotUsed_expectPositiveGains() {
         // given
         let initialInvestmentAmount: Double = 5000
@@ -111,14 +114,85 @@ class DCAServiceTests: XCTestCase {
         XCTAssertEqual(result.yield, 0.3333, accuracy: 0.0001)
     }
     
+    // MARK: - Case 3
     func testResult_givenLosingAssetAndDCAIsUsed_expectNegativeGains() {
+        // given
+        let initialInvestmentAmount: Double = 5000
+        let monthlyDollarCostAveragingAmount: Double = 1000
+        let initialDateOfInvestmentIndex = 5 // (6 months ago)
+        let asset = buildLosingAsset()
+        // when
+        let result = sut.calculate(
+            asset: asset,
+            initialInvestmentAmount: initialInvestmentAmount,
+            monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount,
+            InitialDateOfInvestmentIndex: initialDateOfInvestmentIndex
+        )
+        // then
+        // initial investment: $5000
+        // DCA: $1000 * 5 = $5000
+        // total: $5000 + $5000 = $10000
+        XCTAssertEqual(result.investmentAmount,
+                       10000,
+                       "investment amount is incorrect")
+        XCTAssertFalse(result.isProfitable)
         
+        // Jan: $5000 / 170 = 29.412 shares
+        // Feb: $1000 / 160 = 6.25 shares
+        // Mar: $1000 / 150 = 6.666 shares
+        // April: $1000 / 140 = 7.143 shares
+        // May: $1000 / 130 = 7.692 shares
+        // June $1000 / 120 = 8.333 shares
+        // Total shares = 65.496 shares
+        // Total current value = 65.496 * $110 (latest month closing price) = $7,204,66
+        XCTAssertEqual(result.currentValue, 7204.66, accuracy: 0.01)
+        
+        // gain = $7,204.66 - $10,000 = -$2,795.34
+        XCTAssertEqual(result.gain, -2795.34, accuracy: 0.01)
+        
+        // yeild = -$2,795.34 / $10000 = -0.2795
+        XCTAssertEqual(result.yield, -0.2795, accuracy: 0.0001)
     }
     
+    // MARK: - Case 4
     func testResult_givenLosingAssetAndDCAIsNotUsed_expectNegativeGains() {
+        // given
+        let initialInvestmentAmount: Double = 5000
+        let monthlyDollarCostAveragingAmount: Double = 0
+        let initialDateOfInvestmentIndex = 3 // (4 months ago)
+        let asset = buildLosingAsset()
+        // when
+        let result = sut.calculate(
+            asset: asset,
+            initialInvestmentAmount: initialInvestmentAmount,
+            monthlyDollarCostAveragingAmount: monthlyDollarCostAveragingAmount,
+            InitialDateOfInvestmentIndex: initialDateOfInvestmentIndex
+        )
+        // then
+        // initial investment: $5000
+        // DCA: $0.0 * 5 = $0.0
+        // total: $5000 + $0.0 = $5000
+        XCTAssertEqual(result.investmentAmount,
+                       5000,
+                       "investment amount is incorrect")
+        XCTAssertFalse(result.isProfitable)
         
+        // Mar: $5000 / 150 = 33.3333 shares
+        // April: $0.0 / 140 = 0 shares
+        // May: $0.0 / 130 = 0 shares
+        // June $0.0 / 120 = 0 shares
+        // Total shares =  shares
+        // Total current value = 33.3333 * $110 (latest month closing price) = $3,666.666
+        XCTAssertEqual(result.currentValue, 3666.666, accuracy: 0.001)
+        
+        // gain = $3,666.666 - $5,000 = -$1,333.333
+        XCTAssertEqual(result.gain, -1333.333, accuracy: 0.001)
+        
+        // yeild = -$1,333.333 / $5000 = -0.2666
+        XCTAssertEqual(result.yield, -0.2666, accuracy: 0.0001)
     }
     
+    // MARK: - Helpers
     private func buildWinningAsset() -> Asset {
         let searchResult = buildSearchResult()
         let metaData = buildMetaData()
@@ -132,7 +206,30 @@ class DCAServiceTests: XCTestCase {
         ]
         let timeSeriesMonthlyAdjusted = TimeSeriesMonthlyAdjusted(
             metaData: metaData,
-            timeSeries: timeSeries)
+            timeSeries: timeSeries
+        )
+        
+        return Asset(
+            searchResult: searchResult,
+            timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted
+        )
+    }
+    
+    private func buildLosingAsset() -> Asset {
+        let searchResult = buildSearchResult()
+        let metaData = buildMetaData()
+        let timeSeries: [String: OHLC] = [
+            "2021-01-25": OHLC(open: "170", close: "160", adjustedClose: "160"),
+            "2021-02-25": OHLC(open: "160", close: "150", adjustedClose: "150"),
+            "2021-03-25": OHLC(open: "150", close: "140", adjustedClose: "140"),
+            "2021-04-25": OHLC(open: "140", close: "130", adjustedClose: "130"),
+            "2021-05-25": OHLC(open: "130", close: "120", adjustedClose: "120"),
+            "2021-06-25": OHLC(open: "120", close: "110", adjustedClose: "110"),
+        ]
+        let timeSeriesMonthlyAdjusted = TimeSeriesMonthlyAdjusted(
+            metaData: metaData,
+            timeSeries: timeSeries
+        )
         
         return Asset(
             searchResult: searchResult,
