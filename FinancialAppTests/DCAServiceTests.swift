@@ -55,6 +55,23 @@ class DCAServiceTests: XCTestCase {
         XCTAssertEqual(result.investmentAmount,
                        10000,
                        "investment amount is incorrect")
+        XCTAssertTrue(result.isProfitable)
+        
+        // Jan: $5000 / 100 = 50 shares
+        // Feb: $1000 / 110 = 9.091 shares
+        // Mar: $1000 / 120 = 8.333 shares
+        // April: $1000 / 130 = 7.692 shares
+        // May: $1000 / 140 = 7.143 shares
+        // June $1000 / 150 = 6.666 shares
+        // Total shares = 88.925 shares
+        // Total current value = 88.925 * $160 (latest month closing price) = $14,228.172
+        XCTAssertEqual(result.currentValue, 14228.172, accuracy: 0.1)
+        
+        // gain = $14,228.172 - $10,000 = $4,228.172
+        XCTAssertEqual(result.gain, 4228.172, accuracy: 0.1)
+        
+        // yeild = $4,228.172 / $10000 = 0.423
+        XCTAssertEqual(result.yield, 0.423, accuracy: 0.001)
     }
     
     func testResult_givenWinningAssetAndDCAIsNotUsed_expectPositiveGains() {
@@ -73,12 +90,12 @@ class DCAServiceTests: XCTestCase {
         let searchResult = buildSearchResult()
         let metaData = buildMetaData()
         let timeSeries: [String: OHLC] = [
-            "2021-01-25": OHLC(open: "100", close: "0", adjustedClose: "110"),
-            "2021-02-25": OHLC(open: "110", close: "0", adjustedClose: "120"),
-            "2021-03-25": OHLC(open: "120", close: "0", adjustedClose: "130"),
-            "2021-04-25": OHLC(open: "130", close: "0", adjustedClose: "140"),
-            "2021-05-25": OHLC(open: "140", close: "0", adjustedClose: "150"),
-            "2021-06-25": OHLC(open: "150", close: "0", adjustedClose: "160"),
+            "2021-01-25": OHLC(open: "100", close: "110", adjustedClose: "110"),
+            "2021-02-25": OHLC(open: "110", close: "120", adjustedClose: "120"),
+            "2021-03-25": OHLC(open: "120", close: "130", adjustedClose: "130"),
+            "2021-04-25": OHLC(open: "130", close: "140", adjustedClose: "140"),
+            "2021-05-25": OHLC(open: "140", close: "150", adjustedClose: "150"),
+            "2021-06-25": OHLC(open: "150", close: "160", adjustedClose: "160"),
         ]
         let timeSeriesMonthlyAdjusted = TimeSeriesMonthlyAdjusted(
             metaData: metaData,
