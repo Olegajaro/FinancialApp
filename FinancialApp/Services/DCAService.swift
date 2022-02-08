@@ -87,7 +87,7 @@ struct DCAService {
         return asset.timeSeriesMonthlyAdjusted.getMonthInfos().first?.adjustedClose ?? 0
     }
     
-    private func getInvestmentAmount(
+    func getInvestmentAmount(
         initialInvestmentAmount: Double,
         monthlyDollarCostAveragingAmount: Double,
         initialDateOfInvestmentIndex: Int

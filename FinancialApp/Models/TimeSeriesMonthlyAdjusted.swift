@@ -16,6 +16,7 @@ struct MonthInfo {
 struct TimeSeriesMonthlyAdjusted: Decodable {
     
     let metaData: MetaData
+    // [date(month): share price information]
     let timeSeries: [String: OHLC]
     
     enum CodingKeys: String, CodingKey {
@@ -23,6 +24,7 @@ struct TimeSeriesMonthlyAdjusted: Decodable {
         case timeSeries = "Monthly Adjusted Time Series"
     }
     
+    // getting a MonthInfo array sorted by date based on the keys of the timeSeries dictionary
     func getMonthInfos() -> [MonthInfo] {
         
         var monthInfos: [MonthInfo] = []
@@ -68,6 +70,10 @@ struct MetaData: Decodable {
     }
 }
 
+/*
+ information about the value of shares at the time of opening,
+ closing of the exchange and the adjusted value at the close
+ */
 struct OHLC: Decodable {
     
     let open: String
