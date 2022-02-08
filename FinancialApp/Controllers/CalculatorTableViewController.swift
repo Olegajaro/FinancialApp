@@ -187,7 +187,7 @@ class CalculatorTableViewController: UITableViewController {
             self.investmentAmountLabel.text = result.investmentAmount.toCurrencyFormat(hasDecimalPlaces: false)
             
             self.gainLabel.text = result.gain.toCurrencyFormat(
-                hasDollarSymbol: false, hasDecimalPlaces: false
+                hasDollarSymbol: true, hasDecimalPlaces: false
             ).prefix(withText: gainSymbol)
             
             self.yieldLabel.text = result.yield.percentageFormat.prefix(withText: gainSymbol).addBrackets()
