@@ -11,6 +11,7 @@ import Combine
 
 class CalculatorTableViewController: UITableViewController {
     
+    // MARK: - UIElements
     @IBOutlet weak var currentValueLabel: UILabel!
     @IBOutlet weak var investmentAmountLabel: UILabel!
     @IBOutlet weak var gainLabel: UILabel!
@@ -28,16 +29,20 @@ class CalculatorTableViewController: UITableViewController {
     
     @IBOutlet weak var dateSlider: UISlider!
     
+    // MARK: - Properties
     var asset: Asset?
     
+    private let dcaService = DCAService()
+    private let calculatorPresenter = CalculatorPresenter()
+    
+    // MARK: - Observable Properties
     @Published private var initialDateOfInvestementIndex: Int?
     @Published private var initialInvestmentAmount: Int?
     @Published private var monthlyDollarCostAveraging: Int?
     
     private var subscribers = Set<AnyCancellable>()
-    private let dcaService = DCAService()
-    private let calculatorPresenter = CalculatorPresenter()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +57,7 @@ class CalculatorTableViewController: UITableViewController {
         initialInvestmentAmountTextField.becomeFirstResponder()
     }
     
+    // MARK: - Action and Navigation
     @IBAction func dateSliderDidChange(_ sender: UISlider) {
         initialDateOfInvestementIndex = Int(sender.value)
     }
@@ -69,6 +75,7 @@ class CalculatorTableViewController: UITableViewController {
         }
     }
      
+    // MARK: - SetupViews
     private func setupViews() {
         navigationItem.title = asset?.searchResult.symbol
         
@@ -95,6 +102,17 @@ class CalculatorTableViewController: UITableViewController {
         }
     }
     
+    private func resetViews() {
+        currentValueLabel.text = "0.00"
+        investmentAmountLabel.text = "0.00"
+        gainLabel.text = "-"
+        yieldLabel.text = "-"
+        annualReturnLabel.text = "-"
+    }
+}
+
+// MARK: - Combine methods
+extension CalculatorTableViewController {
     private func handleDateSelection(at index: Int) {
         guard
             navigationController?.visibleViewController is DateSelectionTableViewController
@@ -110,21 +128,17 @@ class CalculatorTableViewController: UITableViewController {
         }
     }
     
-    private func resetViews() {
-        currentValueLabel.text = "0.00"
-        investmentAmountLabel.text = "0.00"
-        gainLabel.text = "-"
-        yieldLabel.text = "-"
-        annualReturnLabel.text = "-"
-    }
-    
     private func observeForm() {
         $initialDateOfInvestementIndex.sink { [weak self] index in
-            guard let index = index else { return }
-            self?.dateSlider.value = index.floatValue
+            guard
+                let self = self,
+                let index = index
+            else { return }
             
-            if let dateString = self?.asset?.timeSeriesMonthlyAdjusted.getMonthInfos()[index].date.MMYYFormat {
-                self?.initialDateOfInvestmentTextField.text = dateString
+            self.dateSlider.value = index.floatValue
+            
+            if let dateString = self.asset?.timeSeriesMonthlyAdjusted.getMonthInfos()[index].date.MMYYFormat {
+                self.initialDateOfInvestmentTextField.text = dateString
             }
         }.store(in: &subscribers)
         
@@ -199,6 +213,7 @@ class CalculatorTableViewController: UITableViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension CalculatorTableViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         

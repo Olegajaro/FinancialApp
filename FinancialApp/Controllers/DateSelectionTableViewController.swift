@@ -32,6 +32,7 @@ class DateSelectionTableViewController: UITableViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension DateSelectionTableViewController {
     override func tableView(
         _ tableView: UITableView,
@@ -68,6 +69,7 @@ extension DateSelectionTableViewController {
     }
 }
 
+// MARK: - DateSelectionTableViewCell
 class DateSelectionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var monthLabel: UILabel!
