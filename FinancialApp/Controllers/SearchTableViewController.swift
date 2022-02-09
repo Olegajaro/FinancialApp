@@ -16,6 +16,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         case searchMode
     }
     
+    // MARK: - Propeties
     private lazy var searchController: UISearchController = {
         let sc = UISearchController(searchResultsController: nil)
         sc.searchResultsUpdater = self
@@ -27,11 +28,14 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
     }()
     
     private let apiService = APIService()
-    private var subscribers = Set<AnyCancellable>()
     private var searchResults: SearchResults?
+    
+    // MARK: - Observable Properties
     @Published private var mode: Mode = .onboarding
     @Published private var searchQuery = String()
+    private var subscribers = Set<AnyCancellable>()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +44,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         observeForm()
     }
     
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showCalculator",
            let destination = segue.destination as? CalculatorTableViewController,
@@ -49,6 +54,7 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         }
     }
     
+    // MARK: - SetupViews
     private func setupNavigationBar() {
         navigationItem.searchController = searchController
         navigationItem.title = "Search"
@@ -58,14 +64,20 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView()
     }
+}
+
+// MARK: - Combine methods
+extension SearchTableViewController {
     
     private func observeForm() {
+        // tracking the text value from the searchController to pass it to the performSearch method
         $searchQuery
             .debounce(for: .milliseconds(750), scheduler: RunLoop.main)
             .sink { [unowned self] searchQuery in
                 performSearch(keywords: searchQuery)
             }.store(in: &subscribers)
         
+        // keeping track of the mode state when the state of the searchController changes
         $mode.sink { [unowned self] mode in
             switch mode {
             case .onboarding:
@@ -76,10 +88,11 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         }.store(in: &subscribers)
     }
     
+    // getting a list of companies by keywords
     private func performSearch(keywords: String) {
         guard !searchQuery.isEmpty else { return }
         showLoadingAnimation()
-        
+    
         apiService.fetchSymbolsPublishser(keywords: keywords)
             .sink { [weak self] completion in
             self?.hideLoadingAnimation()
@@ -97,7 +110,9 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
         }.store(in: &subscribers)
     }
     
-    private func handleSelection(for symbol: String, searchResult: SearchResult) {
+    // Getting company stock data to pass it to CalculatorTableViewController
+    private func handleSelection(for symbol: String,
+                                 searchResult: SearchResult) {
         showLoadingAnimation()
         
         apiService.fetchTimeSeriesMonthlyAdjustedPublisher(keywords: symbol)
@@ -114,7 +129,8 @@ class SearchTableViewController: UITableViewController, UIAnimatable {
                     searchResult: searchResult,
                     timeSeriesMonthlyAdjusted: timeSeriesMonthlyAdjusted
                 )
-                self?.performSegue(withIdentifier: "showCalculator", sender: asset)
+                self?.performSegue(withIdentifier: "showCalculator",
+                                   sender: asset)
                 self?.searchController.searchBar.text = nil
             }.store(in: &subscribers)
     }
@@ -180,6 +196,4 @@ extension SearchTableViewController: UISearchResultsUpdating {
 }
 
 // MARK: - UISearchControllerDelegate
-extension SearchTableViewController: UISearchControllerDelegate {
-    
-}
+extension SearchTableViewController: UISearchControllerDelegate {}
