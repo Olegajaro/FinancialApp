@@ -30,8 +30,7 @@ ____
 + Результат поиска после ввода появляется с небольшой задержкой для более приятного пользовательского опыта.
 + По нажатию на нужную ячейку реализован переход на экран, который представляет собой Калькулятор для расчета доходности от вклада ваших средств в данную компанию.
 
-![startScreen](/Screenshots/startScreen.png) ![searchScreen](/Screenshots/SearchScreen.png)
-![sliderAction](https://media.giphy.com/media/K1OS0kS8VdmC48UYYm/giphy.gif)
+![startScreen](/Screenshots/startScreen.png) ![searchScreen](/Screenshots/SearchScreen.png) ![sliderAction](https://media.giphy.com/media/K1OS0kS8VdmC48UYYm/giphy.gif)
 
 ### Calculator screen
 + Calculator представляет собой __tableView__ c двумя статическими ячейками.
