@@ -30,7 +30,7 @@ ____
 + Результат поиска после ввода появляется с небольшой задержкой для более приятного пользовательского опыта.
 + По нажатию на нужную ячейку реализован переход на экран, который представляет собой Калькулятор для расчета доходности от вклада ваших средств в данную компанию.
 
-![startScreen](/Screenshots/startScreen.png) ![searchScreen](/Screenshots/SearchScreen.png) ![sliderAction](https://media.giphy.com/media/K1OS0kS8VdmC48UYYm/giphy.gif)
+![startScreen](/Screenshots/startScreen.png) ![searchScreen](/Screenshots/SearchScreen.png) 
 
 ### Calculator screen
 + Calculator представляет собой __tableView__ c двумя статическими ячейками.
@@ -43,7 +43,7 @@ ____
 + По нажатию на текствое поле для выбора даты реализован переход на представление Date Selection, где можно выбрать нужную дату.
 + Так же для удобства под текстовым полем есть слайдер, с помощью которого так же можно выбирать начальную дату для вклада.
 
-![calculatorWithDCA](/Screenshots/CalculatorWithDCA.png) ![calculatorNotDCA](/Screenshots/CalculatorLosingResult.png)
+![calculatorWithDCA](/Screenshots/CalculatorWithDCA.png)  ![sliderAction](https://media.giphy.com/media/K1OS0kS8VdmC48UYYm/giphy.gif) ![calculatorNotDCA](/Screenshots/CalculatorLosingResult.png)
 
 ### Date Selection
 + Представление Date selection позволяет выбрать начальную дату для вклада и передать информацию обратно на экран Calculator для расчета.
